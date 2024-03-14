@@ -15,8 +15,6 @@ Vagrant.configure(2) do |config|
 		control.vm.provider "virtualbox" do |v|
 			v.customize [ "modifyvm", :id, "--cpus", "1" ]
 			v.customize [ "modifyvm", :id, "--memory", "1024" ]
-			v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      			v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 			v.customize ["modifyvm", :id, "--name", "misaevS"]
 		end
 		config.vm.provision :shell, :inline => common
@@ -26,10 +24,8 @@ Vagrant.configure(2) do |config|
 		control.vm.hostname = "misaevSW"
 		control.vm.network "private_network", ip: "192.168.56.111"
 		control.vm.provider "virtualbox" do |v|
-			v.customize [ "modifyvm", :id, "--cpus", "2" ]
+			v.customize [ "modifyvm", :id, "--cpus", "1" ]
 			v.customize [ "modifyvm", :id, "--memory", "1024" ]
-			v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      			v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 			v.customize ["modifyvm", :id, "--name", "misaevSW"]
 		end
 		config.vm.provision :shell, :inline => common
