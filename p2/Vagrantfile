@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+	config.vm.synced_folder "./", "/vagrant"
+
+	config.vm.define "misaevS" do |vm1|
+      vm1.vm.hostname = "misaevS"
+      vm1.vm.network "private_network", ip:"192.168.42.110"
+	  vm1.vm.box = "generic/ubuntu1804"
+	  vm1.vm.provider "virtualbox" do |vb|
+		vb.customize ["modifyvm", :id, "--memory", "1024"]
+		vb.customize ["modifyvm", :id, "--cpus", "1"]
+		vb.customize ["modifyvm", :id, "--name", "misaevS"]
+	  end
+
+	  vm1.vm.provision "shell", inline: <<-SHELL
+		apt-get update
+		apt-get install -y vim net-tools telnet
+        curl -sfL https://get.k3s.io | sh -s - --flannel-iface eth1
+	  SHELL
+	end
+  end
