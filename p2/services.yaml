@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-un-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: app-un
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-deux-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: app-deux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-trois-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: app-trois

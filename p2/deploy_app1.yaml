@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-un
+spec:
+  selector:
+    matchLabels:
+      app: app-un
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-un
+    spec:
+      containers:
+      - name: app-un
+        image: paulbouwer/hello-kubernetes:1.7
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: Hello je suis le un
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deux
+spec:
+  selector:
+    matchLabels:
+      app: app-deux
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: app-deux
+    spec:
+      containers:
+      - name: app-deux
+        image: paulbouwer/hello-kubernetes:1.7
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: Hello je suis le deux
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-trois
+spec:
+  selector:
+    matchLabels:
+      app: app-trois
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-trois
+    spec:
+      containers:
+      - name: app-trois
+        image: paulbouwer/hello-kubernetes:1.7
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: Hello je suis le trois
